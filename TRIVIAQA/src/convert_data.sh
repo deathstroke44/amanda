@@ -6,9 +6,9 @@ mkdir $out_dir
 
 
 #for x in web-train web-dev verified-web-dev wikipedia-train wikipedia-dev verified-wikipedia-dev; do
-for x in verified-web-dev verified-wikipedia-dev; do
+for x in web-train web-dev verified-web-dev wikipedia-train wikipedia-dev verified-wikipedia-dev; do
     echo "Converting $x"
-    python3.5 utils/convert_to_squad_format.py --triviaqa_file $data_dir/$x.json --squad_file $out_dir/$x.json --wikipedia_dir $wikidoc_dir --web_dir $webdoc_dir
+    python3.6 utils/convert_to_squad_format.py --triviaqa_file $data_dir/$x.json --squad_file $out_dir/$x.json --wikipedia_dir $wikidoc_dir --web_dir $webdoc_dir
 
     echo "======================="
 done
