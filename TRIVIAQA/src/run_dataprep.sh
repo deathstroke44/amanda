@@ -4,7 +4,11 @@ out_dir=$2
 #glovefile=$4 (path of the 300D glove file)
 mkdir $out_dir
 stage=0
-
+echo "Obtaining the vocabulary files..."
+curl -L -o prep-data/id2word_wiki.json https://tinyurl.com/ybdvpxcr/triviaqa/id2word_wiki.json
+curl -L -o prep-data/id2word_web.json https://tinyurl.com/ybdvpxcr/triviaqa/id2word_web.json
+curl -L -o prep-data/id2char_wiki.json https://tinyurl.com/ybdvpxcr/triviaqa/id2char_wiki.json
+curl -L -o prep-data/id2char_web.json https://tinyurl.com/ybdvpxcr/triviaqa/id2char_web.json
 for x in web-train web-dev verified-web-dev  wikipedia-train wikipedia-dev verified-wikipedia-dev; do
     echo "Tokenizing $x"
     python3.6 tokenization/do_tokenization.py -in=$data_dir/$x.json -out=$out_dir/tokenized-$x.json
@@ -23,11 +27,7 @@ for x in web-train web-dev verified-web-dev; do
     python3.6 prep-data/data_prep_with_char.py -data=$out_dir/tokenized-$x.json -id2w=prep-data/id2word_web.json -id2c=prep-data/id2char_web.json -wr=$out_dir/indexed_$x.json
 done
 
-echo "Obtaining the vocabulary files..."
-curl -L -o prep-data/id2word_wiki.json https://tinyurl.com/ybdvpxcr/triviaqa/id2word_wiki.json
-curl -L -o prep-data/id2word_web.json https://tinyurl.com/ybdvpxcr/triviaqa/id2word_web.json
-curl -L -o prep-data/id2char_wiki.json https://tinyurl.com/ybdvpxcr/triviaqa/id2char_wiki.json
-curl -L -o prep-data/id2char_web.json https://tinyurl.com/ybdvpxcr/triviaqa/id2char_web.json
+
 
 for x in wikipedia-train wikipedia-dev verified-wikipedia-dev; do
     echo "Indexing $x"
