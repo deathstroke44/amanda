@@ -7,7 +7,7 @@ stage=0
 
 for x in web-train web-dev verified-web-dev  wikipedia-train wikipedia-dev verified-wikipedia-dev; do
     echo "Tokenizing $x"
-    python3.5 tokenization/do_tokenization.py -in=$data_dir/$x.json -out=$out_dir/tokenized-$x.json
+    python3.6 tokenization/do_tokenization.py -in=$data_dir/$x.json -out=$out_dir/tokenized-$x.json
 done
 
 if [ $stage -le 3 ]; then
@@ -20,7 +20,7 @@ fi
 
 for x in web-train web-dev verified-web-dev; do
     echo "Indexing $x"
-    python3.5 prep-data/data_prep_with_char.py -data=$out_dir/tokenized-$x.json -id2w=prep-data/id2word_web.json -id2c=prep-data/id2char_web.json -wr=$out_dir/indexed_$x.json
+    python3.6 prep-data/data_prep_with_char.py -data=$out_dir/tokenized-$x.json -id2w=prep-data/id2word_web.json -id2c=prep-data/id2char_web.json -wr=$out_dir/indexed_$x.json
 done
 
 echo "Obtaining the vocabulary files..."
