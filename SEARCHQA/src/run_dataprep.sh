@@ -8,19 +8,19 @@ stage=0
 if [ $stage -le 0 ]; then
     ## tokenization of the training data
     echo "Tokenizing training data..."
-    python3.5 tokenization/do_tokenization.py -in=$train_data -out=data/tokenized-train.json
+    python3.6 tokenization/do_tokenization.py -in=$train_data -out=data/tokenized-train.json
 fi
 
 if [ $stage -le 1 ]; then
    ## tokenization of the dev data
    echo "Tokenizing dev data..."
-   python3.5 tokenization/do_tokenization.py -in=$dev_data -out=data/tokenized-dev.json
+   python3.6 tokenization/do_tokenization.py -in=$dev_data -out=data/tokenized-dev.json
 fi
 
 if [ $stage -le 2 ]; then
    ## tokenization of the test data
    echo "Tokenizing test data..."
-   python3.5 tokenization/do_tokenization.py -in=$test_data -out=data/tokenized-test.json
+   python3.6 tokenization/do_tokenization.py -in=$test_data -out=data/tokenized-test.json
 fi
 
 if [ $stage -le 3 ]; then
